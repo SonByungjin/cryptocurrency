@@ -13,16 +13,16 @@ const Footer = () => {
               <span>10:00~19:00 (주말 및 공휴일 제외)</span>
             </div>
             <div>
-              {FooterContents.counseling.map((text) => (
-                <CounselingText>{text}</CounselingText>
+              {FooterContents.counseling.map((text, textIdx) => (
+                <CounselingText key={textIdx}>{text}</CounselingText>
               ))}
             </div>
             <span>전화문의 1670-9756</span>
           </LeftVerticalPart>
           <LeftVerticalPart>
             <ul>
-              {FooterContents.address.map((text) => (
-                <li>{text}</li>
+              {FooterContents.address.map((text, textIdx) => (
+                <li key={textIdx}>{text}</li>
               ))}
             </ul>
           </LeftVerticalPart>
@@ -32,18 +32,18 @@ const Footer = () => {
         </LeftSection>
         <RightSection>
           <RightHorizonalPart>
-            {FooterContents.company.map((text) => (
-              <li>{text}</li>
+            {FooterContents.company.map((text, textIdx) => (
+              <li key={textIdx}>{text}</li>
             ))}
           </RightHorizonalPart>
           <RightHorizonalPart>
-            {FooterContents.guide.map((text) => (
-              <li>{text}</li>
+            {FooterContents.guide.map((text, textIdx) => (
+              <li key={textIdx}>{text}</li>
             ))}
           </RightHorizonalPart>
           <RightHorizonalPart>
-            {FooterContents.policy.map((text) => (
-              <li>{text}</li>
+            {FooterContents.policy.map((text, textIdx) => (
+              <li key={textIdx}>{text}</li>
             ))}
           </RightHorizonalPart>
         </RightSection>
@@ -56,7 +56,7 @@ export default Footer;
 
 const FooterWrap = styled.div`
   ${({ theme }) => theme.flex('center', 'center')};
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   height: 350px;
