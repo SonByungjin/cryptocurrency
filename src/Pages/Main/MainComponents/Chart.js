@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
-import MainChart from "./ChartComponent/MainChart";
-import ChartNav from "./ChartComponent/ChartNav";
+import React, { useState, useEffect } from 'react';
+import MainChart from './ChartComponent/MainChart';
+import ChartNav from './ChartComponent/ChartNav';
+import { wallstreetApi } from '../../../Config';
 
 const Chart = () => {
   const SORT_MAPPER = {
-    0: "#거래량많은",
-    1: "#급등하는",
-    2: "#급락하는",
-    3: "#최근상장",
+    0: '#거래량많은',
+    1: '#급등하는',
+    2: '#급락하는',
+    3: '#최근상장',
   };
 
   const [chartList, setChartList] = useState([]);
@@ -19,13 +20,13 @@ const Chart = () => {
 
   const fetchChart = async () => {
     let chartHistory = [];
-    await fetch("http://10.58.7.141:8000/products")
+    await fetch(`${wallstreetApi}/products`)
       .then((res) => res.json())
       .then(async (res) => {
         for (let i = 0; i <= 1; i++) {
           chartHistory[i] = {
             data: await fetch(
-              `http://10.58.7.141:8000/orders/reports/${res.message[i].product_id}`
+              `${wallstreetApi}/orders/reports/${res.message[i].product_id}`
             )
               .then((res) => res.json())
               .then((res) => res.report_data),

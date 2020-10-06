@@ -18,8 +18,9 @@ const Chatting = () => {
     }
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     socket.emit('message', { inputMessage });
+    e.target.previousSibling.value = '';
   };
 
   const scrollToBottom = async () => {
@@ -63,7 +64,7 @@ export default Chatting;
 
 const ChattingWrap = styled.div`
   width: 383px;
-  height: 277px;
+  height: 200px;
 `;
 
 const ChattingBox = styled.div`

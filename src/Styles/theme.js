@@ -46,7 +46,7 @@ const theme = {
     box-shadow: ${shadow};
   `,
 
-  WhiteBox: (
+  whiteBox: (
     area = null,
     colStart = null,
     colEnd = null,

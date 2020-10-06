@@ -83,7 +83,7 @@ const NavBar = styled.div`
   z-index: 10;
   background-color: #fafafa;
   & > div {
-    max-width: 1300px;
+    max-width: 1390px;
     width: 100%;
     margin: 0 auto;
     ${({ theme }) => theme.flex('space-between', 'center')};
