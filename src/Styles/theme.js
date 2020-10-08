@@ -32,6 +32,20 @@ const theme = {
     `;
   },
 
+  border: (
+    lineWeight = null,
+    lineType = null,
+    lineColor = null,
+    backgroundColor = null,
+    borderRadius = null,
+    shadow = null
+  ) => css`
+    border: ${lineWeight} ${lineType} ${lineColor};
+    background-color: ${backgroundColor};
+    border-radius: ${borderRadius};
+    box-shadow: ${shadow};
+  `,
+
   WhiteBox: (
     area = null,
     colStart = null,
