@@ -72,15 +72,15 @@ const Profit = () => {
             </p>
             <AssetByOrder>
               <AssetByOrderBar>
-                {BarMenu.map((menu) => (
-                  <div>
+                {BarMenu.map((menu, menuIdx) => (
+                  <div key={menuIdx}>
                     <span>{menu}</span>
                   </div>
                 ))}
               </AssetByOrderBar>
               <AssetByOrderList>
-                {TradingData.map((trade) => (
-                  <ul>
+                {TradingData.map((trade, tradeIdx) => (
+                  <ul key={tradeIdx}>
                     <li>{trade.coinName}</li>
                     <li>{trade.amount}</li>
                     <li>{trade.average}</li>
@@ -112,14 +112,12 @@ const MenuVertical = styled.div`
   width: 15%;
   height: 100%;
   border-right: 1px solid #c9ccd2;
-  ul {
-    li {
-      :first-child {
-        ${({ theme }) => theme.text('20px', '700', '#1772f8')};
-      }
-      margin-bottom: 40px;
-      ${({ theme }) => theme.text('20px', '700', '#c9ccd2')};
+  li {
+    :first-child {
+      ${({ theme }) => theme.text('20px', '700', '#1772f8')};
     }
+    margin-bottom: 40px;
+    ${({ theme }) => theme.text('20px', '700', '#c9ccd2')};
   }
 `;
 

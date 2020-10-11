@@ -1,41 +1,113 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import Nav from '../../Components/Nav/Nav';
+import Footer from '../../Components/Footer/Footer';
 
 const Signup = () => {
+  const [userInfo, setUserInfo] = useState({
+    email: '',
+    password: '',
+    checkPassword: '',
+  });
+  const { email, password, checkPassword } = userInfo;
+  const [loadingStatus, setLoadingStatus] = useState(false);
+  const history = useHistory();
+
+  const inputSignup = (e) => {
+    setUserInfo({
+      ...userInfo,
+      [e.currentTarget.dataset.name]: e.target.value,
+    });
+  };
+
+  const emailCheck = (asValue) => {
+    const emailTypeCheck = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    return emailTypeCheck.test(asValue);
+  };
+
+  const passwordCheck = (asValue) => {
+    let UpperLowerTextCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/;
+    return UpperLowerTextCheck.test(asValue);
+  };
+
+  const loginRequest = async () => {
+    const SendUserInfo = await fetch('http://10.58.5.255:8000/account/signup', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    });
+
+    const res = await SendUserInfo.json();
+    return res;
+  };
+
+  const alertAndLoading = (message) => {
+    alert(message);
+    setLoadingStatus(false);
+  };
+
+  const certificationEmail = () => {
+    setLoadingStatus(true);
+    setTimeout(() => {
+      emailCheck(email) && passwordCheck(password) && password === checkPassword
+        ? loginRequest().then((result) => {
+            if (result.message === 'SUCCESS') {
+              alertAndLoading('인증메일이 발송되었습니다');
+              history.push('/login');
+            } else if (result.message === 'UNAUTHORIZED') {
+              alertAndLoading('아이디, 비밀번호를 확인해주세요');
+            }
+          })
+        : alertAndLoading('입력정보를 다시 확인해주세요');
+    }, 1000);
+  };
+
   return (
     <>
-      <div>nav 예정</div>
+      <Nav />
       <SignupWrap>
+        <LoadingImg loadingStatus={loadingStatus}>
+          <img alt="logoImg" src="/images/img_issue_loading.gif" />
+        </LoadingImg>
         <SignupContainer>
           <SignupTitle>
             <span>회원가입</span>
           </SignupTitle>
           <InputEmail>
             <span>이메일</span>
-            <input type="text" placeholder="이메일 입력"></input>
+            <input
+              onKeyUp={inputSignup}
+              data-name="email"
+              type="text"
+              placeholder="이메일 입력"
+            />
           </InputEmail>
           <InputPasswordContainer>
             <span>비밀번호</span>
-            <InputPassword placeholder="비밀번호 입력"></InputPassword>
+            <InputPassword
+              onKeyUp={inputSignup}
+              data-name="password"
+              placeholder="비밀번호 입력"
+            />
             <PasswordValidContainer>
               <ul>
                 <li>영문 대문자 포함</li>
                 <li>영문 소문자 포함</li>
+                <li>특수 문자 포함</li>
                 <li>숫자 포함</li>
                 <li>10자 이상</li>
               </ul>
             </PasswordValidContainer>
-            <InputPassword placeholder="비밀번호 확인"></InputPassword>
+            <InputPassword
+              onKeyUp={inputSignup}
+              data-name="checkPassword"
+              placeholder="비밀번호 확인"
+            ></InputPassword>
           </InputPasswordContainer>
-          <CertificationContainer>
-            <span>인증번호</span>
-            <input placeholder="인증번호 입력"></input>
-            <RequestCertificationBtn>인증번호 요청</RequestCertificationBtn>
-          </CertificationContainer>
-          <CompleteBtn>완료</CompleteBtn>
+          <CompleteBtn onClick={certificationEmail}>완료</CompleteBtn>
         </SignupContainer>
       </SignupWrap>
-      <div>footer 예정</div>
+      <Footer />
     </>
   );
 };
@@ -48,9 +120,16 @@ const SignupWrap = styled.div`
   ${({ theme }) => theme.flex('center', 'center')}
 `;
 
+const LoadingImg = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  display: ${({ loadingStatus }) => !loadingStatus && 'none'};
+`;
+
 const SignupContainer = styled.div`
   width: 480px;
-  height: 1100px;
+  height: 850px;
 `;
 
 const SignupTitle = styled.div`
@@ -70,7 +149,7 @@ const InputEmail = styled.div`
     height: 50px;
     margin-top: 10px;
     padding: 10px;
-    ${({ theme }) => theme.border('1px', 'solid', '#aeb3bb', '5px')}
+    ${({ theme }) => theme.border('1px', 'solid', '#aeb3bb', null, '5px')}
     :focus {
       border-color: #1772f8;
     }
@@ -89,14 +168,14 @@ const InputPassword = styled.input.attrs((props) => ({
   height: 50px;
   margin-top: 10px;
   padding: 10px;
-  ${({ theme }) => theme.border('1px', 'solid', '#aeb3bb', '5px')}
+  ${({ theme }) => theme.border('1px', 'solid', '#aeb3bb', null, '5px')}
   :focus {
     border-color: #1772f8;
   }
 `;
 
 const PasswordValidContainer = styled.div`
-  ${({ theme }) => theme.border('1px', 'solid', '#aeb3bb', '5px')}
+  ${({ theme }) => theme.border('1px', 'solid', '#aeb3bb', null, '5px')}
   width: 100%;
   padding: 20px 40px;
   margin: 10px 0 30px 0;
@@ -109,40 +188,16 @@ const PasswordValidContainer = styled.div`
   }
 `;
 
-const CertificationContainer = styled.div`
-  input {
-    ${({ theme }) => theme.border('1px', 'solid', '#aeb3bb', '5px')}
-    :focus {
-      border-color: #1772f8;
-    }
-    width: 100%;
-    height: 50px;
-    margin-top: 10px;
-    padding: 10px;
-  }
-`;
-
-const RequestCertificationBtn = styled.button`
-  cursor: pointer;
-  margin-top: 10px;
-  padding: 10px;
-  ${({ theme }) => theme.border('1px', 'solid', '#aeb3bb', '5px')};
-  &:hover {
-    color: white;
-    background-color: #79818f;
-  }
-`;
-
 const CompleteBtn = styled.button`
   cursor: pointer;
   width: 100%;
   height: 50px;
   text-align: center;
-  margin: 30px 0 100px 0;
+  margin-top: 30px;
   ${({ theme }) => theme.text('14px', null, '#79818f')};
-  ${({ theme }) => theme.border('1px', 'solid', '#c9ccd2', '5px', '#c9ccd2')};
+  ${({ theme }) => theme.border('1px', 'solid', '#c9ccd2', '#c9ccd2', '5px')};
   :hover {
     ${({ theme }) => theme.text('14px', null, 'white')};
-    ${({ theme }) => theme.border('1px', 'solid', '#1772f8', '5px', '#1772f8')};
+    ${({ theme }) => theme.border('1px', 'solid', '#1772f8', '#1772f8', '5px')};
   }
 `;
