@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from '../../Components/Nav/Nav';
 import Footer from '../../Components/Footer/Footer';
+import { wallstreetApi } from '../../Config';
 
 const Signup = () => {
   const [userInfo, setUserInfo] = useState({
@@ -32,7 +33,7 @@ const Signup = () => {
   };
 
   const loginRequest = async () => {
-    const SendUserInfo = await fetch('http://10.58.5.255:8000/account/signup', {
+    const SendUserInfo = await fetch(`${wallstreetApi}/accounts/signup`, {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });

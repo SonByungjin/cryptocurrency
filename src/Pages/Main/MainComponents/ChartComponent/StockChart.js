@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import HC_more from "highcharts/highcharts-more";
+import { findByLabelText } from "@testing-library/react";
 
 HC_more(Highcharts);
 
@@ -25,8 +26,31 @@ function StockChart({ coinId, chartList }) {
       },
     },
     title: {
+      align: "left",
       text: "Wall Street",
+      style: {
+        color: "black",
+        fontSize: "15px",
+        fontWeight: "600",
+      },
+      x:0,
+      y:40,
     },
+    subtitle:{
+      align: "right",
+      floating:false,
+      style:{
+        color: "red",
+        fontSize: "30px",
+        fontWeight: "bolder",
+      },
+      text:"1000 ",
+      useHTML:false,
+      verticalAlign:undefined,
+      widthAdjust:-44,
+      x:0,
+      y:50,
+      },
     plotOptions: {
       series: {
         states: {
@@ -43,9 +67,9 @@ function StockChart({ coinId, chartList }) {
       enabled: false,
     },
     yAxis: {
-      gridLineWidth: 0,
+      gridLineWidth: 1,
       labels: {
-        enabled: false,
+        enabled: true,
       },
     },
     xAxis: {
@@ -76,6 +100,9 @@ function StockChart({ coinId, chartList }) {
       trackBorderColor: "transparent",
     },
     series: [{ data: [] }],
+    chart: {
+      type: "line"
+    }
   });
 
   useEffect(() => {
@@ -97,6 +124,15 @@ function StockChart({ coinId, chartList }) {
         line: {
           color: chartList[coinId]?.upDown > 0 ? "#e12343" : "#1763b6",
         },
+      },
+      title: {
+        text: chartList[coinId]?.coinName,
+      },
+      subtitle: {
+        text: chartList[coinId]?.present,
+        style: {
+          color: chartList[coinId]?.upDown > 0 ? "#e12343" : "#1763b6",
+        }
       },
       series: [
         {

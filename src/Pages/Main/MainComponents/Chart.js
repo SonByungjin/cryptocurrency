@@ -11,9 +11,8 @@ const Chart = () => {
   };
 
   const [chartList, setChartList] = useState([]);
-
   const [navColor, setNavColor] = useState(SORT_MAPPER[0]);
-  console.log(chartList);
+
   useEffect(() => {
     fetchChart();
   }, []);
@@ -30,8 +29,8 @@ const Chart = () => {
             )
               .then((res) => res.json())
               .then((res) => res.report_data),
-            allDayLong: res.message[i].abbreviation_name,
-            present: res.message[i].price_now,
+            coinName: res.message[i].abbreviation_name,
+            present: res.message[i].price_now.toLocaleString(),
             upDown: res.message[i].change,
             volume: Math.floor(res.message[i].traded_money),
             id: res.message[i].product_id,
@@ -44,8 +43,10 @@ const Chart = () => {
         .then((res) => {
           chartHistory[i + 1] = {
             data: res.data,
-            allDayLong: res.data[res.data.length - 1].Name,
-            present: res.data[res.data.length - 1].closing_price,
+            coinName: res.data[res.data.length - 1].Name,
+            present: res.data[
+              res.data.length - 1
+            ].closing_price.toLocaleString(),
             upDown:
               ((res.data[res.data.length - 100].closing_price -
                 res.data[res.data.length - 190].closing_price) /
@@ -78,8 +79,8 @@ const Chart = () => {
     if (id === SORT_MAPPER[3]) {
       setChartList(
         [...chartList].sort(function (a, b) {
-          if (a.allDayLong > b.allDayLong) return 1;
-          if (a.allDayLong < b.allDayLong) return -1;
+          if (a.coinName > b.coinName) return 1;
+          if (a.coinName < b.coinName) return -1;
           return 0;
         })
       );

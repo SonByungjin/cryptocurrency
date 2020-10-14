@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from '../../Components/Nav/Nav';
 import Footer from '../../Components/Footer/Footer';
+import { wallstreetApi } from '../../Config';
 
 const { Kakao } = window;
 
@@ -23,7 +24,7 @@ const Login = () => {
   };
 
   const sendLoginInput = async () => {
-    const res = await fetch('http://10.58.6.236:8000/user/signin', {
+    const res = await fetch(`${wallstreetApi}/accounts/signin`, {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -46,14 +47,12 @@ const Login = () => {
   };
 
   const postSocialTokenToServer = async (token) => {
-    console.log(token);
-    const res = await fetch('http://10.58.6.236:8000/user/socialsignin', {
+    const res = await fetch(`${wallstreetApi}/accounts/socialsignin`, {
       method: 'POST',
       headers: {
         Authorization: token,
       },
     });
-    console.log(res);
     const { Authorization } = await res.json();
     checkLoginValidation(Authorization);
   };
@@ -67,6 +66,11 @@ const Login = () => {
     } else {
       alert('아이디, 비밀번호를 확인해주세요');
     }
+  };
+
+  const visiblePassword = (e) => {
+    console.log(e.target.type);
+    e.target.type = 'text';
   };
 
   return (
@@ -89,10 +93,11 @@ const Login = () => {
               placeholder="E-Mail"
             />
             <LoginInput
+              onClick={visiblePassword}
               onKeyUp={changeInputValue}
               data-name="password"
-              type={'password'}
-              placeholder={'Password'}
+              type="password"
+              placeholder="Password"
             ></LoginInput>
             <LoginBtn onClick={sendLoginInput}>로그인</LoginBtn>
             <LoginEtc>

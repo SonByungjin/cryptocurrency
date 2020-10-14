@@ -43,7 +43,7 @@ function MainChart({ chartList }) {
                 id={chart?.id}
                 onClick={() => setGraph(idx)}
               >
-                <Text name>{chart?.allDayLong}</Text>
+                <Text name>{chart?.coinName}</Text>
                 <Text 
                   color={
                     chart?.upDown.toFixed(2) === 0 || -0

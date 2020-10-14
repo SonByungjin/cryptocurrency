@@ -1,9 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
+import Chatting from '../../Components/Chatting/Chatting';
 
 const Exchange = () => {
   return (
-    <div className="Exchange">
-      <div></div>
+    <div>
+      <Chatting />
     </div>
   );
 };

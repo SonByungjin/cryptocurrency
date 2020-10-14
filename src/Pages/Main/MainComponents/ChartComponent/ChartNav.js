@@ -21,7 +21,8 @@ const ChartNav = ({ clickBtn, navColor, sortMapper }) => {
       </Hashtags>
       <div>
         <CoinSearch />
-        <TradingValue>24시간 거래량(원)</TradingValue>
+        <TradingValue>24시간 거래량(원)<span>69,651백만</span></TradingValue>
+        
       </div>
     </Container>
   );
@@ -85,13 +86,12 @@ const TradingValue = styled.div`
   font-size: 10px;
   line-height: 30px;
   color: #a9a9a9;
+  > span {
+    margin-left: 23px;
+    font-size: 15px;
+    font-weight: 500;
+    color:#79818f;
+  }
 `;
 
 const btns = ["#거래량많은", "#급등하는", "#급락하는", "#최근상장"];
-
-// const [btns, setBtns] = useState([
-  //   "#거래량많은",
-  //   "#급등하는",
-  //   "#급락하는",
-  //   "#최근상장",
-  // ]);

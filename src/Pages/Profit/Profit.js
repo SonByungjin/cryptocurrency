@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Nav from '../../Components/Nav/Nav';
 import Footer from '../../Components/Footer/Footer';
+import { wallstreetApi } from '../../Config';
 
 const barMenu = [
   '코인명',
@@ -14,42 +15,26 @@ const barMenu = [
 
 const Profit = () => {
   const [tradingData, setTradingData] = useState({
-    // redux로 데이터를 받아올 예정 레이아웃 작업으로 인해 미리 설정해놓았습니다.
     coin_list: [
       {
-        icon:
-          'https://cdn.pixabay.com/photo/2016/11/05/20/08/sunflower-1801284_960_720.png',
-        coin_name: '썬쓰',
-        coin_code: 'SUNS',
-        quantity: 251.0,
-        average_buying_price: {
-          price__avg: 1000.0,
-        },
-        buying_price: 1000.0,
-        current_price: 1000.0,
-        profit_rate: 0,
-      },
-      {
-        icon:
-          'https://cdn.pixabay.com/photo/2012/04/24/12/33/circle-39783_960_720.png',
-        coin_name: '피블쓰',
-        coin_code: 'PIBS',
-        quantity: 10.0,
-        average_buying_price: {
-          price__avg: 1000.0,
-        },
-        buying_price: 1000.0,
-        current_price: 1000.0,
+        icon: '',
+        coin_name: '',
+        coin_code: '',
+        quantity: 0,
+        average_buying_price: 0,
+        buying_price: 0,
+        current_price: 0,
         profit_rate: 0,
       },
     ],
-    total_asset: 2285594804.0,
-    won_balance: 2285333804.0,
-    coin_balance: 261000.0,
-    total_buy_price: 261000.0,
-    profit: -47.4,
+    total_asset: 0,
+    won_balance: 0,
+    coin_balance: 0,
+    total_buy_price: 0,
+    profit: 0,
     profit_rate: 0,
   });
+
   const {
     coin_list,
     total_asset,
@@ -60,17 +45,18 @@ const Profit = () => {
     profit_rate,
   } = tradingData;
 
-  // useEffect로 실행할 예정입니다
+  useEffect(() => {
+    getInitialData();
+  }, []);
+
   const getInitialData = async () => {
-    const res = await fetch('api', {
+    const res = await fetch(`${wallstreetApi}/accounts/assets`, {
       headers: {
         Authorization: localStorage.getItem('token'),
       },
     });
-    const firstTradingData = await res.json();
-
-    //여기에다가 dispatch 해야할 에정입니다
-    setTradingData(firstTradingData);
+    const tradeData = await res.json();
+    setTradingData(tradeData);
   };
 
   return (
@@ -89,22 +75,22 @@ const Profit = () => {
           <TotalAssetContainer>
             <TotalAsset>
               <span>총 보유자산</span>
-              <span>{total_asset.toLocaleString('en')}원</span>
+              <span>{total_asset.toLocaleString()}원</span>
             </TotalAsset>
             <OwnAsset>
               <ItemAndPrice>
                 <span>보유 원화</span>
-                <span>{won_balance.toLocaleString('en')}원</span>
+                <span>{won_balance.toLocaleString()}원</span>
               </ItemAndPrice>
               <ItemAndPrice>
                 <span>보유 암호화폐</span>
-                <span>{coin_balance.toLocaleString('en')}원</span>
+                <span>{coin_balance.toLocaleString()}원</span>
               </ItemAndPrice>
             </OwnAsset>
             <TradingAsset>
               <ItemAndPrice>
                 <span>총매수금액</span>
-                <span>{total_buy_price.toLocaleString('en')}원</span>
+                <span>{total_buy_price.toLocaleString()}원</span>
               </ItemAndPrice>
               <ItemAndPrice>
                 <span>평가 손익</span>
@@ -142,12 +128,14 @@ const Profit = () => {
                       </li>
                       <li>{trade.quantity}</li>
                       <li>
-                        {trade.average_buying_price.price__avg.toLocaleString()}
+                        {Math.floor(
+                          Number(trade.average_buying_price.price__avg)
+                        ).toLocaleString()}
                         원
                       </li>
-                      <li>{trade.buying_price.toLocaleString()}원</li>
-                      <li>{trade.current_price.toLocaleString()}원</li>
-                      <li>{trade.profit_rate}%</li>
+                      <li>{Number(trade.buying_price).toLocaleString()}원</li>
+                      <li>{Number(trade.current_price).toLocaleString()}원</li>
+                      <li>{Number(trade.profit_rate)}%</li>
                     </ul>
                   );
                 })}

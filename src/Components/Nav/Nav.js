@@ -20,9 +20,12 @@ const Nav = () => {
     <NavBar>
       <div>
         <MenuContainer>
-          <IconImg>
-            <img alt="logo_img" src="/images/Wall-street-movie-logo.png" />
-          </IconImg>
+          <Link to="/main">
+            <IconImg>
+              {/* <img alt="logo_img" src="/images/Wall-street-movie-logo.png" /> */}
+              <span>Wall Street</span>
+            </IconImg>
+          </Link>
           <MenuTexts>
             {menuContents.map((menu, idx) => {
               const { id, menuName, menuDetail } = menu;
@@ -31,9 +34,11 @@ const Nav = () => {
                   onMouseOver={() => clickMenu(idx)}
                   onMouseOut={() => clickMenu(idx)}
                 >
-                  <MenuTextContainer>
-                    <MenuStyle key={id}>{menuName}</MenuStyle>
-                  </MenuTextContainer>
+                  <Link to="/exchange">
+                    <MenuTextContainer>
+                      <MenuStyle key={id}>{menuName}</MenuStyle>
+                    </MenuTextContainer>
+                  </Link>
                   <MenuDetailValid key={id} validIdx={menuValid[idx]}>
                     <MenuDatailContainer>
                       <MenuDetail
@@ -76,7 +81,7 @@ const NavBar = styled.div`
   position: fixed;
   top: 0;
   z-index: 10;
-  background-color: white;
+  background-color: #fafafa;
   & > div {
     max-width: 1300px;
     width: 100%;
@@ -90,9 +95,13 @@ const MenuContainer = styled.div`
 `;
 
 const IconImg = styled.div`
+  cursor: pointer;
   margin-right: 10px;
-  img {
+  /* img {
     width: 150px;
+  } */
+  span {
+    ${({ theme }) => theme.text('35px', '700', '#0058ff')}
   }
 `;
 
