@@ -1,7 +1,7 @@
-import { css } from 'styled-components';
+import { css } from "styled-components";
 const theme = {
-  up: '#e12343',
-  down: '#1763b6',
+  up: "#e12343",
+  down: "#1763b6",
 
   text: (size = null, weight = null, color = null) => {
     return css`
