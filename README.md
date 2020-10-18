@@ -50,7 +50,7 @@ ___
 ![](https://images.velog.io/images/sgyos000/post/bded169e-8ea5-4f3a-b9f1-e695b13469d3/%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif)
 
 ## 메인
-![](https://media.vlpt.us/images/sgyos000/post/edc86d89-8cb7-4a78-8add-2003e2dbf9de/%EB%A9%94%EC%9D%B8.gif)
+![](https://images.velog.io/images/sgyos000/post/bded169e-8ea5-4f3a-b9f1-e695b13469d3/%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif)
 
 ## 거래소
 ### Top
