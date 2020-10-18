@@ -44,6 +44,18 @@ ___
       네비게이션바, 푸터 등 공통 컴포넌트를 담당하였으며, 로그인과 회원가입, 수익현황 페이지까지 맡았다.<br>
       소셜로그인시 카카오톡과 연결될 수 있도록 통신을 구현하였고, 카카오톡 계정에서 받은 토큰을 백엔드에게 전달하여 유저 토큰을 새로 생성하게끔 기능을 구현하였다.
       클릭시 다른 페이지로 넘어갈 수 있도록 링크를 연결하였고, 유저에 따라 거래내역을 확인할 수 있게끔 수익현황 레이아웃을 만들었다.
-      
-
-
+___
+# 결과물
+## 소셜로그인
+![](https://images.velog.io/images/sgyos000/post/bded169e-8ea5-4f3a-b9f1-e695b13469d3/%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif)
+## 메인
+![](https://images.velog.io/images/sgyos000/post/b57311f7-85b9-4499-9339-8bd75178683a/%EB%A9%94%EC%9D%B8.gif)
+## 거래소
+### Top
+![](https://images.velog.io/images/sgyos000/post/7cf7d416-0091-444d-a466-56e65fd94c7a/%EA%B1%B0%EB%9E%98%EC%86%8C(1).gif)
+### Bottom
+![](https://images.velog.io/images/sgyos000/post/82c18ec8-6add-488f-9c78-73322b833df7/%EA%B1%B0%EB%9E%98%EC%86%8C(2).gif)
+## 수익현황
+![](https://images.velog.io/images/sgyos000/post/6162fe8a-3d1d-49a7-bcd6-9f723117efd5/%EC%88%98%EC%9D%B5%ED%98%84%ED%99%A9.gif)
+___
+모두 정말 수고 많으셨고, 함께 
