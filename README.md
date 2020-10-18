@@ -48,17 +48,17 @@ ___
 # 결과물
 ## 소셜로그인
 ![](https://images.velog.io/images/sgyos000/post/bded169e-8ea5-4f3a-b9f1-e695b13469d3/%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif)
-
+___
 ## 메인
-![](https://images.velog.io/images/sgyos000/post/bded169e-8ea5-4f3a-b9f1-e695b13469d3/%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif)
-
+![](https://images.velog.io/images/sgyos000/post/a381028a-b8be-45f9-b8bd-a9e1552691f3/%EB%A9%94%EC%9D%B8re.gif)
+___
 ## 거래소
 ### Top
 ![](https://images.velog.io/images/sgyos000/post/7cf7d416-0091-444d-a466-56e65fd94c7a/%EA%B1%B0%EB%9E%98%EC%86%8C(1).gif)
-
+___
 ### Bottom
 ![](https://images.velog.io/images/sgyos000/post/82c18ec8-6add-488f-9c78-73322b833df7/%EA%B1%B0%EB%9E%98%EC%86%8C(2).gif)
-
+____
 ## 수익현황
 ![](https://images.velog.io/images/sgyos000/post/6162fe8a-3d1d-49a7-bcd6-9f723117efd5/%EC%88%98%EC%9D%B5%ED%98%84%ED%99%A9.gif)
 ___
