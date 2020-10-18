@@ -48,14 +48,18 @@ ___
 # 결과물
 ## 소셜로그인
 ![](https://images.velog.io/images/sgyos000/post/bded169e-8ea5-4f3a-b9f1-e695b13469d3/%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8.gif)
+
 ## 메인
 ![](https://images.velog.io/images/sgyos000/post/27ba37cb-46eb-4910-8d0a-f91537e9f766/%EB%A9%94%EC%9D%B8.gif)
+
 ## 거래소
 ### Top
 ![](https://images.velog.io/images/sgyos000/post/7cf7d416-0091-444d-a466-56e65fd94c7a/%EA%B1%B0%EB%9E%98%EC%86%8C(1).gif)
+
 ### Bottom
 ![](https://images.velog.io/images/sgyos000/post/82c18ec8-6add-488f-9c78-73322b833df7/%EA%B1%B0%EB%9E%98%EC%86%8C(2).gif)
+
 ## 수익현황
 ![](https://images.velog.io/images/sgyos000/post/6162fe8a-3d1d-49a7-bcd6-9f723117efd5/%EC%88%98%EC%9D%B5%ED%98%84%ED%99%A9.gif)
 ___
-모두 정말 수고 많으셨고, 함께 
+모두 정말 수고 많으셨고, 함께 해주어 너무나 감사하고, 언제나 항상 응원하고 축복하겠습니다
